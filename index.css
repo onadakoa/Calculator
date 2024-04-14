@@ -42,7 +42,7 @@ body {
     padding: 1px 20px;
     height: calc(var(--calculatorHeight) - var(--counterHeight));
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
 
     div {
@@ -64,6 +64,8 @@ body {
         font-size: 1.5rem;
       }
     }
+
+
   }
 }
 
@@ -93,4 +95,12 @@ body {
 .button:not(.disabled, .selected):hover {
   background-color: #ddd;
   cursor: pointer;
+}
+
+
+.red {
+  background-color: #ff0000 ;
+}
+.red:hover {
+  background-color: #cc0000 !important;
 }
