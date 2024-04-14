@@ -25,10 +25,6 @@
     font-size: 1.1rem;
   }
 
-  .backStep {
-    grid-column: 1/3;
-  }
-
   .binary {
     grid-column: 1/3;
 
@@ -39,6 +35,12 @@
     .byte {
       display: flex;
       justify-content: center;
+    }
+    .byte span:nth-child(5n) {
+      margin-left: 5px;
+    }
+    .byte span:hover {
+      cursor: pointer;
     }
   }
 
@@ -51,5 +53,23 @@
     .number::before {
       content: "hex";
     }
+  }
+}
+
+.backStep {
+  grid-column: 1/3;
+  padding-right: 0px !important;
+
+  .symbol {
+    background-color: #ddd;
+    margin-left: 10px;
+    height: 100%;
+    padding: 0px !important;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+    font-weight: 700;
+    font-size: 1.4rem !important;
   }
 }
