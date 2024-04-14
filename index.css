@@ -64,8 +64,6 @@ body {
         font-size: 1.5rem;
       }
     }
-
-
   }
 }
 
@@ -84,7 +82,6 @@ body {
 
   &.mod {
     padding: 30px;
-
     &.selected {
       background-color: #303030;
       color: #eaeaea;
@@ -97,10 +94,22 @@ body {
   cursor: pointer;
 }
 
-
 .red {
-  background-color: #ff0000 ;
+  background-color: #ff0000;
 }
 .red:hover {
   background-color: #cc0000 !important;
+}
+
+.switch.selected {
+  background-color: #303030;
+  color: #eaeaea;
+
+  &:hover {
+    cursor: pointer ;
+  }
+}
+
+.cRed {
+  color: red;
 }

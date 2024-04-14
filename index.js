@@ -17,6 +17,9 @@ let currentMod = "dec";
 let currentNumber = "0";
 let historyNumber = "0";
 let currentSymbol = "";
+let currentMinus = false;
+
+const minusSwitch = document.querySelector(".switch");
 
 function setMod(mod) {
   currentMod = modsTable[mod];
@@ -43,13 +46,19 @@ function UpdateButtons() {
     SetButtonsDisabled(binButtons, false);
     modButtons[2].classList.add("selected");
   }
+  if (currentMinus == true) {
+    minusSwitch.classList.add("selected");
+  } else minusSwitch.classList.remove("selected");
 }
 function UpdateCounters() {
-  setText(decimalNumber, currentNumber);
-  setText(hexadecimalNumber, (+currentNumber).toString(16).toUpperCase());
+  setText(decimalNumber, returnMinus(currentMinus) + currentNumber);
+  setText(
+    hexadecimalNumber,
+    returnMinus(currentMinus) + (+currentNumber).toString(16).toUpperCase(),
+  );
   setText(backStepNumber, historyNumber);
   setText(backStepSymbol, currentSymbol);
-  setBits(bits, currentNumber);
+  setBits(bits, currentNumber, currentMinus);
 }
 function updateAll() {
   UpdateCounters();
@@ -62,16 +71,21 @@ function setSymbol(i) {
   if (symbol == "=") {
     if (currentSymbol == "x") currentSymbol = "*";
     currentNumber = Math.round(
-      eval(historyNumber + currentSymbol + currentNumber),
+      eval(historyNumber + currentSymbol + `(${((currentMinus) ? "-" : "")}${currentNumber})`),
     );
+    if (currentNumber < 0) {
+      currentMinus = true;
+      currentNumber = Math.abs(currentNumber)
+    }
     historyNumber = "";
     currentSymbol = "";
     updateAll();
     return;
   }
   currentSymbol = symbol;
-  historyNumber = currentNumber;
+  historyNumber = `(${((currentMinus) ? "-" : "")}${currentNumber})`;
   currentNumber = "0";
+  currentMinus = false;
   updateAll();
 }
 
@@ -152,4 +166,9 @@ navButtons.forEach((b, i) => {
 
     updateAll();
   });
+});
+
+minusSwitch.addEventListener("click", () => {
+  currentMinus = !currentMinus;
+  updateAll();
 });
